@@ -193,9 +193,12 @@ export function getSelectionEntries({
   }
 
   if (isDefined(removeSelected)) {
+
+    const accelerator = isMac() ? 'Backspace' : 'Delete';
+
     menuEntries.push({
       label: 'Remove Selected',
-      accelerator: 'Delete',
+      accelerator,
       enabled: removeSelected,
       action: 'removeSelection',
       role: inputActive && 'delete'
@@ -307,3 +310,13 @@ export function getDefaultUndoRedoEntries() {
 function isDefined(value) {
   return value !== undefined;
 }
+
+function isMac() {
+  const {
+    platform
+  } = window.getAppPreload();
+
+  return platform === 'darwin';
+}
+
+
