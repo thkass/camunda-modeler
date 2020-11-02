@@ -311,12 +311,11 @@ function isDefined(value) {
   return value !== undefined;
 }
 
+// todo(pinussilvestrus): get isMac via getGlobals?
 function isMac() {
-  const {
-    platform
-  } = window.getAppPreload();
+  const platform = window.navigator.platform;
 
-  return platform === 'darwin';
+  return ['Mac68K', 'MacPPC', 'MacIntel'].indexOf(platform) > -1;
 }
 
 
